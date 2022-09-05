@@ -8,6 +8,7 @@ import PageLoader from "components/PageLoader";
 
 const Show = () => {
   const [task, setTask] = useState([]);
+  const [assignedUser, setAssignedUser] = useState([]);
   const [pageLoading, setPageLoading] = useState(true);
   const { slug } = useParams();
 
@@ -20,9 +21,10 @@ const Show = () => {
   const fetchTaskDetails = async () => {
     try {
       const {
-        data: { task },
+        data: { task, assigned_user },
       } = await tasksApi.show(slug);
       setTask(task);
+      setAssignedUser(assigned_user);
     } catch (error) {
       logger.error(error);
     } finally {
@@ -51,7 +53,7 @@ const Show = () => {
       </div>
       <h2 className="border-b mt-3 mb-3 border-gray-500 pb-3 pl-3 text-lg leading-5 text-gray-800">
         <span className="text-gray-600">Assigned To : </span>
-        {task?.assigned_user.name}
+        {assignedUser?.name}
       </h2>
     </Container>
   );
