@@ -1,11 +1,29 @@
 import React from "react";
 
-import { getFromLocalStorage } from "utils/storage";
+import { resetAuthTokens } from "src/apis/axios";
+
+import authApi from "apis/auth";
+import { getFromLocalStorage, setToLocalStorage } from "utils/storage";
 
 import NavItem from "./NavItem";
 
 const NavBar = () => {
   const userName = getFromLocalStorage("authUserName");
+  const handleLogout = async () => {
+    try {
+      await authApi.logout();
+      setToLocalStorage({
+        authToken: null,
+        email: null,
+        userId: null,
+        userName: null,
+      });
+      resetAuthTokens();
+      window.location.href = "/";
+    } catch (error) {
+      logger.error(error);
+    }
+  };
 
   return (
     <nav className="shadow bg-white">
@@ -23,12 +41,24 @@ const NavBar = () => {
           </div>
           <div className="flex items-center justify-end gap-x-4">
             <span
-              className="font-regular text-bb-gray-600 transition focus:outline-none focus:text-bb-gray-700 inline-flex items-center border-b-2
-              border-transparent px-2 pt-1 text-sm leading-5 text-opacity-50 duration-150
+              className="font-regular text-bb-gray-600 transition focus:outline-none focus:text-bb-gray-700
+              inline-flex items-center border-b-2 border-transparent
+              px-2 pt-1 text-sm leading-5
+              text-opacity-50 duration-150
               ease-in-out"
             >
               {userName}
             </span>
+            <a
+              className="text-bb-gray-600 transition hover:text-bb-gray-600 focus:outline-none focus:text-bb-gray-700
+              inline-flex cursor-pointer items-center border-b-2
+              border-transparent px-1 pt-1 text-sm
+              font-semibold leading-5 text-opacity-50
+              duration-150 ease-in-out"
+              onClick={handleLogout}
+            >
+              LogOut
+            </a>
           </div>
         </div>
       </div>
