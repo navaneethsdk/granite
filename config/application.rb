@@ -23,5 +23,7 @@ module Granite
     config.generators do |g|
       g.test_framework :test_unit, fixture: false
     end
+
+    config.factory_bot.definition_file_paths = ["test/factories"]
   end
 end
