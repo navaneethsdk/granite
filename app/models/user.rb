@@ -5,6 +5,7 @@ class User < ApplicationRecord
   MAX_EMAIL_LENGTH = 255
   MAX_NAME_LENGTH = 35
 
+  has_many :comments, dependent: :destroy
   has_many :assigned_tasks, foreign_key: :assigned_user_id, class_name: "Task"
   has_many :created_tasks, foreign_key: :task_owner_id, class_name: "Task"
   has_secure_password
