@@ -20,6 +20,15 @@ end
 
 enable_test_coverage if ENV["COVERAGE"]
 
+def headers(user, options = {})
+  {
+    Accept: "application/json",
+    "Content_Type" => "application/json",
+    "X-Auth-Token" => user.authentication_token,
+    "X-Auth-Email" => user.email
+  }.merge(options)
+end
+
 class ActiveSupport::TestCase
   include ActionView::Helpers::TranslationHelper
   include FactoryBot::Syntax::Methods
