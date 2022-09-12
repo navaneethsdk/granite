@@ -7,13 +7,12 @@ import { ToastContainer } from "react-toastify";
 import { registerIntercepts, setAuthHeaders } from "apis/axios";
 import { initializeLogger } from "common/logger";
 import { Login, Signup } from "components/Authentication";
+import PrivateRoute from "components/Common/PrivateRoute";
 import Dashboard from "components/Dashboard";
 import MyPreferences from "components/MyPreferences";
 import PageLoader from "components/PageLoader";
 import { CreateTask, ShowTask, EditTask } from "components/Tasks";
 import { getFromLocalStorage } from "utils/storage";
-
-import PrivateRoute from "./components/Common/PrivateRoute";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
