@@ -24,7 +24,6 @@ module Granite
       g.test_framework :test_unit, fixture: false
     end
 
-    config.factory_bot.definition_file_paths = ["test/factories"]
     config.active_job.queue_adapter = :sidekiq
   end
 end
