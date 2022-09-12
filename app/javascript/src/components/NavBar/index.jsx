@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
 import { resetAuthTokens } from "src/apis/axios";
 
 import authApi from "apis/auth";
@@ -40,6 +41,15 @@ const NavBar = () => {
             </div>
           </div>
           <div className="flex items-center justify-end gap-x-4">
+            <span
+              className="font-regular text-bb-gray-600 transition focus:outline-none focus:text-bb-gray-700
+              inline-flex items-center border-b-2 border-transparent
+              px-2 pt-1 text-sm leading-5
+              text-opacity-50 duration-150
+              ease-in-out"
+            >
+              <Link to="/my/preferences">Preferences </Link>
+            </span>
             <span
               className="font-regular text-bb-gray-600 transition focus:outline-none focus:text-bb-gray-700
               inline-flex items-center border-b-2 border-transparent
